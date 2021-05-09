@@ -22,8 +22,7 @@ http.createServer( function(req, res){
     res.write('</form>');
 
     /*verificar se há envio de dados no formulário, se 
-    houver tratá-los, senão apenas montar formulário 
-    para preenchimento */
+    houver tratá-los */
     if(req.method == 'POST'){
         
         const form = formidable();
