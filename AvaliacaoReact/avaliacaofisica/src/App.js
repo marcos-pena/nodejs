@@ -10,6 +10,7 @@ class App extends React.Component {
     
     super(props);
 
+    //estados correspondentes aos campos do formulário
     this.state = {
       genero: 'm',
       peso: 0,
@@ -22,6 +23,10 @@ class App extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  /**
+   * Atualização de "states" conforme os campos forem 
+   * atualizados no formulário
+   */
   handleChange(event){
     const target = event.target;
     const value = target.value;
@@ -34,11 +39,16 @@ class App extends React.Component {
 
   handleSubmit(event){
     
+    /**
+     * Valida se todos os campos numéricos possuem valor maior que zero, se não for
+     * exibe mensagem de erro
+     */
     if(this.state.peso > 0 && this.state.altura >0 && this.state.idade > 0){
       
       //Calcular TMB com os dados informados
       var tmb;
 
+      //os cálculos são diferentes para os gêneros feminino e masculino
       if(this.state.genero == 'm'){
           tmb = 66 + (13.7 * this.state.peso) + (5 * this.state.altura) - (6.8 * this.state.idade)
       }else{
@@ -48,7 +58,7 @@ class App extends React.Component {
       this.setState({tmb: tmb});
 
     }else{
-      alert('Favor preencher todos os campos com valores válidos!');
+      alert('Todos os campos numéricos devem ter valor maior que 0!');
     }
 
     event.preventDefault();
